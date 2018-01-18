@@ -1,4 +1,7 @@
 class HomeController < ApplicationController
+  # redirection not needed on public pages
+  skip_before_action :subdomain_redirect
+
   def index
     # code
   end
@@ -12,11 +15,11 @@ class HomeController < ApplicationController
   end
 
   def consumers
-    
+
   end
 
   def enterprises
-    
+
   end
 
   def pricing

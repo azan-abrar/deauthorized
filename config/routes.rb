@@ -17,14 +17,17 @@ Rails.application.routes.draw do
       sessions:      'users/sessions'
     }
 
-  namespace :users do
-    get '/dashboard', to: 'dashboard#index',    as: 'dashboard', controller: 'users/dashboard'
-    resources :charges
-    resources :apps
-    resources :devices
-    resources :administrators
-    resources :settings
-    resources :reports
+  # restrict routes access outside sub-domain scope
+  constraints Subdomain do
+    namespace :users do
+      get '/dashboard', to: 'dashboard#index', as: 'dashboard', controller: 'users/dashboard'
+      resources :charges
+      resources :apps
+      resources :devices
+      resources :administrators
+      resources :settings
+      resources :reports
+    end
   end
 
 end

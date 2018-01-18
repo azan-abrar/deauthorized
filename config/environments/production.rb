@@ -27,7 +27,7 @@ Rails.application.configure do
   config.read_encrypted_secrets = true
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'deauthorized.com' }
+  config.action_mailer.default_url_options = { host: ENV['DOMAIN'] }
 
   # config.action_mailer.smtp_settings = {
   #   user_name: ENV['SENDGRID_USERNAME'],

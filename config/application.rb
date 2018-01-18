@@ -6,6 +6,8 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 Dotenv.load
+# load environment specific variables
+Dotenv.overload(".env.#{Rails.env}")
 
 module Deauthorized
   class Application < Rails::Application
@@ -40,6 +42,9 @@ module Deauthorized
       end
     end
 
+    config.autoload_paths << "#{Rails.root}/lib"
+    # fix for devise session to persist across sub-domains
+    config.session_store :cookie_store, key: '_deauthorized_session', domain: ".#{ENV['DOMAIN']}"
 
   end
 end

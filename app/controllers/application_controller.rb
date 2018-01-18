@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
+  # fix for authenticity token errors
+  protect_from_forgery unless: -> { request.format.json? }
 
   layout :layout_by_resource
+  before_action :subdomain_redirect
 
 
   private
@@ -18,7 +20,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def subdomain_redirect
+    return if self.is_a?(DeviseController)
 
-
-
+    if user_signed_in? && (request.subdomain != current_user.subdomain)
+      # redirects the user to their own sub-domain / tenant
+      host = request.host_with_port.sub! request.subdomain, current_user.subdomain
+      redirect_to "http://#{host}#{request.path}"
+    end
+  end
 end

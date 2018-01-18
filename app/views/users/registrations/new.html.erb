@@ -23,6 +23,10 @@
                                   <input type="text" class="form-control" id="lastname" placeholder="Last Name" required="">
                                 </div> -->
               <div class="form-group col-md-12">
+                <label for="subdomain">Subdomain</label>
+                <%= f.text_field :subdomain, placeholder: "Subdomain", class: "form-control", autofocus: true %>
+              </div>
+              <div class="form-group col-md-12">
                 <label for="exampleInputEmail1">Email Address</label>
                 <%= f.email_field :email, placeholder: "Email", class: "form-control", autofocus: true %>
               </div>
@@ -42,7 +46,7 @@
               <!-- end text-center -->
               <% end %>
               <!-- end form -->
-<!-- 
+<!--
               <div class="social-login col-md-12 mb20 text-center">
                 <p>Or you can sign up using your social account.</p>
                 <a href="#" class="btn se-btn fb-btn">

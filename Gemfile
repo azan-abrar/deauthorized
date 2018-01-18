@@ -25,6 +25,7 @@ gem 'dotenv'
 gem 'webpacker', '~> 3.0'
 gem 'stripe'
 gem 'carrierwave', '~> 1.0'
+gem 'apartment'
 
 # API configurations
 gem 'rack-cors'
